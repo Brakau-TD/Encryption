@@ -14,6 +14,7 @@ class TranspositionCipher(Encryption):
         pass
 
     def encrypt(self):
+        # create a list of lists to hold the clear text
         self._rows = self.calculate_row_numbers()
         new_text = self.transform_clear_text(self._rows)
         for row in range(self._rows):
@@ -21,6 +22,7 @@ class TranspositionCipher(Encryption):
             for i in range(len(new_text) // self._rows):
                 temp_array.append(new_text[i + (row * self._cipher)])
             self._encrypt_array.append(temp_array)
+        # create a string from a rotated array
         for column in range(self._cipher):
             for row in self._encrypt_array:
                 self._encrypted_text += row[column]
