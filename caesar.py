@@ -12,9 +12,6 @@ class Caesar(Encryption):
     def set_clear_text(self, clear_text: str):
         self._clear_text = clear_text
 
-    def set_decrypted_text(self, decrypted_text: str):
-        self._decrypted_text = decrypted_text
-
     def set_encrypted_text(self, encrypted_text: str):
         self._encrypted_text = encrypted_text
 

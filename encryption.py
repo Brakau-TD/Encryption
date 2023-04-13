@@ -16,10 +16,6 @@ class Encryption(ABC):
         pass
 
     @abstractmethod
-    def set_decrypted_text(self, decrypted_text: str):
-        pass
-
-    @abstractmethod
     def set_cipher(self, cipher: any):
         pass
 
