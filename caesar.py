@@ -1,7 +1,8 @@
 """class for simple encryption and decryption of text using the Caesar cipher."""
+from encryption import Encryption
 
 
-class Caesar:
+class Caesar(Encryption):
     def __init__(self):
         self._clear_text = None
         self._encrypted_text = None
@@ -23,7 +24,7 @@ class Caesar:
     def give_decrypted_text(self) -> str:
         return self._decrypted_text
 
-    def set_caesar_cipher(self, caesar_cipher: int):
+    def set_cipher(self, caesar_cipher: int):
         """Cipher for encryption and decryption is the same."""
         self._caesar_cipher = caesar_cipher
 
@@ -53,13 +54,13 @@ def caesar_testanwendung():
     text = input("Enter text to encrypt: ")
     caesar.set_clear_text(text)
     caesar_cipher = int(input("Enter Caesar cipher: "))
-    caesar.set_caesar_cipher(caesar_cipher)
+    caesar.set_cipher(caesar_cipher)
     caesar.encrypt()
     print(caesar.give_encrypted_text())
     text2 = input("Give encrypted text to decrypt: ")
     caesar.set_encrypted_text(text2)
     caesar_cipher = int(input("Enter Caesar cipher: "))
-    caesar.set_caesar_cipher(caesar_cipher)
+    caesar.set_cipher(caesar_cipher)
     caesar.decrypt()
     print(caesar.give_decrypted_text())
 
