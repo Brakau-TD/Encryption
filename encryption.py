@@ -30,3 +30,7 @@ class Encryption(ABC):
     @abstractmethod
     def set_encrypted_text(self, text):
         pass
+
+    @abstractmethod
+    def clear_memory():
+        pass

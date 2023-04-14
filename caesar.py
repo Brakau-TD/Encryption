@@ -45,21 +45,22 @@ class Caesar(Encryption):
                 decrypted_letter = 122 - abs(decrypted_letter - 48)
             self._decrypted_text += chr(decrypted_letter)
 
+    def clear_memory(self):
+        """clears out memopry between session"""
+        self.__init__()
+
 
 def caesar_testanwendung():
-    caesar = Caesar()
-    text = input("Enter text to encrypt: ")
-    caesar.set_clear_text(text)
-    caesar_cipher = int(input("Enter Caesar cipher: "))
-    caesar.set_cipher(caesar_cipher)
-    caesar.encrypt()
-    print(caesar.give_encrypted_text())
-    text2 = input("Give encrypted text to decrypt: ")
-    caesar.set_encrypted_text(text2)
-    caesar_cipher = int(input("Enter Caesar cipher: "))
-    caesar.set_cipher(caesar_cipher)
-    caesar.decrypt()
-    print(caesar.give_decrypted_text())
+    c = Caesar()
+    c.set_clear_text("Willkommen in der Welt der Kryptographie")
+    c.set_cipher(4)
+    c.encrypt()
+    print(c.give_encrypted_text())
+    c.set_encrypted_text(c.give_encrypted_text())
+    c.set_cipher(4)
+    c.decrypt()
+    print(c.give_decrypted_text())
+    c.clear_memory()
 
 
 if __name__ == "__main__":
