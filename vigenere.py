@@ -14,7 +14,6 @@ class Vigenere(Encryption):
         self._real_start = 32
         self._real_highest = 126
         self._create_vigenere_array()
-        pass
 
     def _create_vigenere_array(self):
         """creates an array with a given alphabet range constructed from ascii codes, each line being shifted"""

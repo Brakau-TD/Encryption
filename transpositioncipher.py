@@ -10,7 +10,6 @@ class TranspositionCipher(Encryption):
         self._decrypted_text = ""
         self._encrypt_array = []
         self._cipher = 0
-        pass
 
     def encrypt(self):
         """creates an encrypted string in self._encrypted_text from self._clear_text input"""
