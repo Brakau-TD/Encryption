@@ -57,8 +57,8 @@ class Vigenere(Encryption):
         self._set_cipher_to_cleartext_length(self._encrypted_text)
         for index, letter in enumerate(self._encrypted_text):
             key_cipher = self._clear_text_column.index(self._cipher[index])
-            encrypted_cipher = self._vigenere_rect[key_cipher].index(letter)
-            self._decrypted_text += chr(encrypted_cipher + self._real_start)
+            decrypted_cipher = self._vigenere_rect[key_cipher].index(letter)
+            self._decrypted_text += chr(decrypted_cipher + self._real_start)
 
     def set_clear_text(self, clear_text: str):
         self._clear_text = clear_text
