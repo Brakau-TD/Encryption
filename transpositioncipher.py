@@ -15,8 +15,7 @@ class TranspositionCipher(Encryption):
 
     def encrypt(self):
         # create a list of lists to hold the clear text
-        self._rows = self.calculate_row_numbers()
-        new_text = self.transform_clear_text(self._rows)
+        self._rows, new_text = self.prepare_algorithm(self._clear_text)
         for row in range(self._rows):
             temp_array = []
             for i in range(len(new_text) // self._rows):
@@ -27,24 +26,28 @@ class TranspositionCipher(Encryption):
             for row in self._encrypt_array:
                 self._encrypted_text += row[column]
 
-    def calculate_row_numbers(self):
+    def calculate_row_numbers(self, text):
         """returns the number of rows needed to encrypt the text"""
-        return (len(self._clear_text) + self._cipher - 1) // self._cipher
+        return (len(text) + self._cipher - 1) // self._cipher
 
-    def transform_clear_text(self, rows):
+    def transform_text(self, rows, text):
         """adds blanks to the string so that it fits the encryption array"""
-        amount_blanks = (rows * self._cipher) - len(self._clear_text)
-        return self._clear_text + (" " * amount_blanks)
+        amount_blanks = (rows * self._cipher) - len(text)
+        return text + (" " * amount_blanks)
 
     def decrypt(self):
-        pass
+        self._rows, new_text = self.prepare_algorithm(self._encrypted_text)
+
+    def prepare_algorithm(self, text):
+        rows = self.calculate_row_numbers(text)
+        new_text = self.transform_text(rows, text)
+        return rows, new_text
 
     def set_clear_text(self, clear_text: str):
         self._clear_text = clear_text
 
-    # TODO: decrypt a text
-    def set_decrypted_text(self, decrypted_text: str):
-        pass
+    def set_encrypted_text(self, text):
+        self._encrypted_text = text
 
     def set_cipher(self, cipher: any):
         self._cipher = cipher

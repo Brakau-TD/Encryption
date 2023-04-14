@@ -26,3 +26,7 @@ class Encryption(ABC):
     @abstractmethod
     def give_decrypted_text(self) -> str:
         pass
+
+    @abstractmethod
+    def set_encrypted_text(self, text):
+        pass
