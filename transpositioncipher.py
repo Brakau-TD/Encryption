@@ -10,15 +10,14 @@ class TranspositionCipher(Encryption):
         self._decrypted_text = ""
         self._encrypt_array = []
         self._cipher = 0
-        self._rows = None
         pass
 
     def encrypt(self):
         # create a list of lists to hold the clear text
-        self._rows, new_text = self.prepare_algorithm(self._clear_text)
-        for row in range(self._rows):
+        rows, new_text = self.prepare_algorithm(self._clear_text)
+        for row in range(rows):
             temp_array = []
-            for i in range(len(new_text) // self._rows):
+            for i in range(len(new_text) // rows):
                 temp_array.append(new_text[i + (row * self._cipher)])
             self._encrypt_array.append(temp_array)
         # create a string from a rotated array
@@ -36,7 +35,7 @@ class TranspositionCipher(Encryption):
         return text + (" " * amount_blanks)
 
     def decrypt(self):
-        self._rows, new_text = self.prepare_algorithm(self._encrypted_text)
+        rows, new_text = self.prepare_algorithm(self._encrypted_text)
 
     def prepare_algorithm(self, text):
         rows = self.calculate_row_numbers(text)
