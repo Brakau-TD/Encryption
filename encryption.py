@@ -28,9 +28,13 @@ class Encryption(ABC):
         pass
 
     @abstractmethod
-    def set_encrypted_text(self, text):
+    def set_encrypted_text(self, text: str):
         pass
 
     @abstractmethod
     def clear_memory():
+        pass
+
+    @abstractmethod
+    def get_overview():
         pass

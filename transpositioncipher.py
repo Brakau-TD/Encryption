@@ -14,7 +14,7 @@ class TranspositionCipher(Encryption):
 
     def encrypt(self):
         """creates an encrypted string in self._encrypted_text from self._clear_text input"""
-        # gets the exact number of rows of the array and a transformed text which fits perfectly in an array of n-rows with n-columns
+        # gets the exact number of rows of the array and a transformed text which fits in an array of n-rows with n-columns
         rows, clear_text = self.prepare_algorithm(self._clear_text)
         # writes the clear text (clear_text) into an array of the specified size
         self._encrypt_array = [
@@ -22,22 +22,19 @@ class TranspositionCipher(Encryption):
              for i in range(len(clear_text) // rows)]
             for row in range(rows)
         ]
-        # creates a new two dimensional array with n-rows (of length rows) and n-columns(self._cipher long)
-        # this step "rotates" the self._encrypt_array into its encrypted form
+        # "rotate" the self._encrypt_array into its encrypted form
         encrypt_array = [
             [row[column] for row in self._encrypt_array]
             for column in range(self._cipher)
         ]
-        # flattens the list of lists
         flatlist = [item for sublist in encrypt_array for item in sublist]
-        # creates a string of the flatlist, which is then the encrypted text
         self._encrypted_text = "".join(flatlist)
 
-    def calculate_row_numbers(self, text):
+    def calculate_row_numbers(self, text: str) -> int:
         """returns the number of rows needed to encrypt the text"""
         return (len(text) + self._cipher - 1) // self._cipher
 
-    def transform_text(self, rows, text):
+    def transform_text(self, rows: int, text: str) -> str:
         """adds blanks to the string so that it fits the encryption array"""
         amount_blanks = (rows * self._cipher) - len(text)
         return text + (" " * amount_blanks)
@@ -53,7 +50,7 @@ class TranspositionCipher(Encryption):
                 counter += 1
                 index = counter
 
-    def prepare_algorithm(self, text):
+    def prepare_algorithm(self, text: str) -> tuple:
         """logic for creating the two-dimensional array"""
         rows = self.calculate_row_numbers(text)
         new_text = self.transform_text(rows, text)
@@ -62,7 +59,7 @@ class TranspositionCipher(Encryption):
     def set_clear_text(self, clear_text: str):
         self._clear_text = clear_text
 
-    def set_encrypted_text(self, text):
+    def set_encrypted_text(self, text: str):
         self._encrypted_text = text
 
     def set_cipher(self, cipher: int):
@@ -77,18 +74,23 @@ class TranspositionCipher(Encryption):
     def clear_memory(self):
         """clears out memory between sessions"""
         self.__init__()
+    
+    def get_overview(self):
+        print("cipher:          ", self._cipher)
+        print("clear text:      ", self._clear_text)
+        print("encrypted text:  ", self._encrypted_text)
+        print("decrypted text:  ", self._decrypted_text)
 
 
-def transposition_testanwendung():
+def transposition_testfunction():
     tc = TranspositionCipher()
-    tc.set_clear_text("Willkommen in der Welt der Kryptographie")
+    tc.set_clear_text("Welcome to the world of cryptography!")
     tc.set_cipher(4)
     tc.encrypt()
-    print(tc.give_encrypted_text())
     tc.set_encrypted_text(tc.give_encrypted_text())
     tc.decrypt()
-    print(tc.give_decrypted_text())
+    tc.get_overview()
 
 
 if __name__ == "__main__":
-    transposition_testanwendung()
+    transposition_testfunction()
