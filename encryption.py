@@ -32,9 +32,9 @@ class Encryption(ABC):
         pass
 
     @abstractmethod
-    def clear_memory():
+    def clear_memory(self):
         pass
 
     @abstractmethod
-    def get_overview():
+    def get_overview(self):
         pass
