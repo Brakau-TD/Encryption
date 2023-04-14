@@ -11,25 +11,25 @@ class Vigenere(Encryption):
         self._decrypted_text = ""
         self._encrypted_text = ""
         self._cipher = ""
-        self._real_start = 32
-        self._real_highest = 126
+        self._ascii_start = 32
+        self._ascii_stop = 126
         self._create_vigenere_array()
 
     def _create_vigenere_array(self):
         """creates an array with a given alphabet range constructed from ascii codes, each line being shifted"""
         array, counter = [], -1
-        index_difference = self._real_highest - self._real_start
+        index_difference = self._ascii_stop - self._ascii_start
         for _ in range(0, index_difference):
             counter += 1
             array = []
             for i in range(0, index_difference):
-                value = self._real_start + i + counter
-                if value > self._real_highest:
-                    value = self._real_start + (i - (index_difference - 1)) + counter
+                value = self._ascii_start + i + counter
+                if value > self._ascii_stop:
+                    value = self._ascii_start + (i - (index_difference - 1)) + counter
                 array.append(chr(value))
             self._vigenere_rect.append(array)
         self._clear_text_column = [
-            chr(x) for x in range(self._real_start, self._real_highest)
+            chr(x) for x in range(self._ascii_start, self._ascii_stop)
         ]
 
     def _set_cipher_to_cleartext_length(self, textforlength: str = None):
@@ -58,7 +58,7 @@ class Vigenere(Encryption):
         for index, letter in enumerate(self._encrypted_text):
             key_cipher = self._clear_text_column.index(self._cipher[index])
             decrypted_cipher = self._vigenere_rect[key_cipher].index(letter)
-            self._decrypted_text += chr(decrypted_cipher + self._real_start)
+            self._decrypted_text += chr(decrypted_cipher + self._ascii_start)
 
     def set_clear_text(self, clear_text: str):
         self._clear_text = clear_text
@@ -77,8 +77,8 @@ class Vigenere(Encryption):
 
     def set_start_stop_ascii_code(self, start: int, stop: int):
         """needs to consistent over encryption and decryption"""
-        self._real_start = start
-        self._real_highest = stop
+        self._ascii_start = start
+        self._ascii_stop = stop
 
     def clear_memory(self):
         """clears out memory between sessions"""
