@@ -100,7 +100,7 @@ def vigenere_testfunction():
     encrypted = v.give_encrypted_text()
     print("Overview over encryption: ")
     v.get_overview()
-    # the delete statement is to "prove" that the memory is cleared
+    # the delete statement is to make sure that the memory is cleared
     del v
 
     vx = Vigenere()
