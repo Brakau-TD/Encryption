@@ -5,7 +5,7 @@ from encryption import Encryption
 
 class TranspositionCipher(Encryption):
     def __init__(self):
-        self._clear_text = None
+        self._clear_text = ""
         self._encrypted_text = ""
         self._decrypted_text = ""
         self._encrypt_array = []

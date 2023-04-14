@@ -4,8 +4,8 @@ from encryption import Encryption
 
 class Caesar(Encryption):
     def __init__(self):
-        self._clear_text = None
-        self._encrypted_text = None
+        self._clear_text = ""
+        self._encrypted_text = ""
         self._decrypted_text = ""
         self._cipher = 0
 
@@ -27,7 +27,6 @@ class Caesar(Encryption):
 
     def encrypt(self):
         """encrypts a string with the Caesar cipher using the caesar_cipher value"""
-        self._encrypted_text = ""
         for letter in self._clear_text:
             encrypted_letter = ord(letter) + self._cipher
             encrypted_letter = (
