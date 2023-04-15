@@ -83,7 +83,7 @@ class Vigenere(Encryption):
     def clear_memory(self):
         """clears out memory between sessions"""
         self.__init__()
-    
+
     def get_overview(self):
         print("cipher:          ", self._cipher)
         print("clear text:      ", self._clear_text)

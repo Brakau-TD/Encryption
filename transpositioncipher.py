@@ -17,8 +17,10 @@ class TranspositionCipher(Encryption):
         rows, clear_text = self.prepare_algorithm(self._clear_text)
         # writes the clear text (clear_text) into an array of the specified size
         self._encrypt_array = [
-            [clear_text[i + (row * self._cipher)]
-             for i in range(len(clear_text) // rows)]
+            [
+                clear_text[i + (row * self._cipher)]
+                for i in range(len(clear_text) // rows)
+            ]
             for row in range(rows)
         ]
         # "rotate" the self._encrypt_array into its encrypted form
@@ -73,7 +75,7 @@ class TranspositionCipher(Encryption):
     def clear_memory(self):
         """clears out memory between sessions"""
         self.__init__()
-    
+
     def get_overview(self):
         print("cipher:          ", self._cipher)
         print("clear text:      ", self._clear_text)

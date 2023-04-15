@@ -47,7 +47,7 @@ class Caesar(Encryption):
     def clear_memory(self):
         """clears out memopry between session"""
         self.__init__()
-    
+
     def get_overview(self):
         print("cipher:          ", self._cipher)
         print("clear text:      ", self._clear_text)
